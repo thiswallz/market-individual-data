@@ -1,10 +1,39 @@
-# MarketIndividualData
+# MarketSummaries
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
-## Development server
+## Web App
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Customizable grid with animation
+
+![Alt text](example1.gif?raw=true 'Grid and market summary')
+
+## Proxy Server (Nginx) - Api rest at http://localhost:4000/
+
+* Start Nginx with this configuration (In order to bypass CORS problems with the Bittrex API REST) i.e,
+
+```sh
+   server {
+        listen       4000;
+        location /getmarketsummaries {
+            add_header Access-Control-Allow-Origin *;
+            proxy_pass https://bittrex.com/api/v1.1/public/getmarketsummaries;
+        }
+        location ~* ^/getticker/(.*) {
+            add_header Access-Control-Allow-Origin *;
+            proxy_pass https://bittrex.com/api/v1.1/public/getticker/$1$is_args$args;
+        }
+   }
+```
+
+* You can use other tool/server/extension to bypass bittrex, like an Chrome CORS extension, just remember change the URL in src/environments/environment.ts and src/environments/environment.prod.ts
+
+## Application Web (Angular using Material Design) - App at http://localhost:4001/
+
+```sh
+   npm i
+   ng serve
+```
 
 ## Code scaffolding
 

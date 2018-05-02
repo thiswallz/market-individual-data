@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+  <mat-form-field color="$candy-app-warn">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-table #table [dataSource]="dataSource">
+      <!-- Checkbox Column -->
+      <ng-container matColumnDef="select">
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox 
+            (click)="$event.stopPropagation()"
+            (change)="selectMarket($event, row)"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- MarketName Column -->
+      <ng-container matColumnDef="MarketName">
+        <mat-cell *matCellDef="let element"> {{element.MarketName}} </mat-cell>
+      </ng-container>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+        (click)="selectMarket($event, row)"
+        [ngClass]="{'row-selected': row.selected===true}">
+      </mat-row>
+    </mat-table>
+    <mat-paginator #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20]"
+        [showFirstLastButtons]="true">
+    </mat-paginator>
+<div>
+  

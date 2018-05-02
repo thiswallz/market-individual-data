@@ -1,0 +1,48 @@
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  max-height: 580px;
+  min-height: 580px;
+  overflow: hidden;
+}
+.mat-header-cell {
+  font-size: 16px;
+  font-weight: 500;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+mat-row .cdk-column-MarketName {
+  font-weight: bold;
+  color: darkorange;
+}
+
+.mat-cell {
+  color: rgba(52, 52, 52, 0.9);
+}
+
+.market-text-down {
+  color: rgba(255, 0, 0, 0.9);
+}
+.market-text-up {
+  color: rgba(0, 206, 37, 0.9);
+}

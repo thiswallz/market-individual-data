@@ -1,0 +1,42 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <mat-table #table [dataSource]="dataSource">
+  
+      <!-- MarketName Column -->
+      <ng-container matColumnDef="MarketName">
+        <mat-header-cell *matHeaderCellDef> Market Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.MarketName}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="Bid">
+        <mat-header-cell *matHeaderCellDef> Bid </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <i class="fab fa-btc"></i> {{element.Bid}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Ask">
+        <mat-header-cell *matHeaderCellDef> Ask </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <i class="fab fa-btc"></i> {{element.Ask}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Last">
+        <mat-header-cell *matHeaderCellDef> Last </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <i class="fab fa-btc"></i> 
+          <span 
+            [ngClass]="[element.Last<= element.Bid ? 'market-text-down' : 'market-text-up']">
+            {{element.Last}}
+          </span> 
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row @markets *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+</div>
